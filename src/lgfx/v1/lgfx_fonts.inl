@@ -2040,7 +2040,6 @@ label_nextbyte: /// 次のデータを取得する;
       {
         auto buf = (bgr888_t*)alloca((bw * ((sy + 65535) >> 16)) * sizeof(bgr888_t));
 
-        pixelcopy_t p_(buf, gfx->getColorConverter()->depth, rgb888_3Byte, gfx->hasPalette());
         int32_t y0, y1 = (yoffset * sy) >> 16;
         int32_t i = 0;
         do {
@@ -2087,6 +2086,7 @@ label_nextbyte: /// 次のデータを取得する;
                     } while (++x0 != x1);
                   }
                 } while (++j0 < j1);
+                pixelcopy_t p_(buf, gfx->getColorConverter()->depth, rgb888_3Byte, gfx->hasPalette());
                 gfx->pushImage(x + rx, by, rw, bh, &p_);
               }
             }
